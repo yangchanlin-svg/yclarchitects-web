@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell.exe -Command \"Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/anthropics/skills/refs/heads/main/skills/frontend-design/SKILL.md' -UseBasicParsing | Select-Object -ExpandProperty Content\")",
+      "WebFetch(domain:44313.tw)",
+      "WebFetch(domain:jyca.com.tw)",
+      "WebFetch(domain:www.facebook.com)"
+    ]
+  }
+}

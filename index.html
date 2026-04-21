@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>楊承霖建築師事務所＋群山建築設計</title>
+<link rel="icon" type="image/png" href="YCLA_logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@200;300;400&family=EB+Garamond:ital,wght@0,400;1,400&family=Playfair+Display:wght@900&display=swap" rel="stylesheet" />
+<style>
+
+/* ── Brand colors ── */
+:root{
+  --gold:   #D4A840;
+  --green:  #7A9472;
+  --beige:  #D4CEBC;
+  --beige-light: #F5F3EE;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:18px;scroll-behavior:smooth;}
+body{
+  background:#fff;color:#111;
+  font-family:'Noto Sans TC',sans-serif;
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;cursor:pointer;}
+button{background:none;border:none;cursor:pointer;font:inherit;}
+
+/* ══ HEADER ═══════════════════════════════ */
+#hd{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:stretch;
+  border-bottom:1px solid #e0e0e0;background:#fff;height:88px;
+}
+.hd-logo{
+  display:flex;align-items:center;gap:1.1rem;
+  padding:0 1.8rem;border-right:1px solid #e0e0e0;min-width:360px;
+}
+.hd-logo img{height:56px;width:auto;display:block;}
+.hd-logo-zh{font-size:1.08rem;font-weight:600;letter-spacing:.04em;color:#111;line-height:1.5;}
+.hd-logo-en{font-size:1.09rem;font-family:'Playfair Display',serif;font-weight:900;letter-spacing:.02em;color:#333;background:rgba(212,168,64,0.8);padding:.05em .3em;display:inline-block;}
+.hd-lang{
+  display:flex;align-items:center;margin-left:auto;
+  padding:0 1rem;border-left:1px solid #e0e0e0;
+}
+.hd-lang button{
+  font-size:.55rem;letter-spacing:.12em;color:#aaa;
+  padding:.18rem .5rem;border:1px solid #ddd;margin-left:-1px;
+  transition:background .15s,color .15s;
+}
+.hd-lang button.on,.hd-lang button:hover{
+  background:var(--gold);color:#fff;border-color:var(--gold);
+}
+
+/* ══ FIXED SIDEBAR ══════════════════════════ */
+#sidebar{
+  position:fixed;
+  top:88px;left:0;bottom:0;
+  width:140px;
+  border-right:1px solid #e8e8e8;
+  background:#fff;
+  z-index:100;
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+}
+.sb-item{
+  padding:.6rem .9rem;
+  border-bottom:1px solid #e8e8e8;
+  font-size:.86rem;letter-spacing:.1em;color:#111;
+  cursor:pointer;
+  transition:background .15s,color .15s;
+  white-space:nowrap;
+}
+.sb-item:first-child{
+  background:var(--beige-light);
+  font-weight:400;cursor:pointer;
+}
+.sb-item:first-child:hover{background:#ece9e2;}
+.sb-item.nav-item:hover{background:#f5f4f2;}
+.sb-item.nav-item.open{color:var(--gold);background:var(--beige-light);}
+
+/* ══ HERO SLIDESHOW ════════════════════════ */
+#main{margin-top:88px;margin-left:140px;}
+
+#hero{
+  position:relative;
+  height:calc(100vh - 88px);
+  overflow:hidden;
+  background:#111;
+}
+
+/* Slideshow backgrounds */
+.slide-bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 1.2s ease;
+  will-change:opacity;
+}
+.slide-bg.active{opacity:1;}
+
+/* Slideshow indicators */
+#slide-dots{
+  position:absolute;
+  bottom:8.5rem;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:.55rem;
+  z-index:5;
+}
+.dot{
+  width:5px;height:5px;
+  border-radius:50%;
+  background:rgba(255,255,255,.4);
+  cursor:pointer;
+  transition:background .3s;
+}
+.dot.active{background:#fff;}
+
+/* ══ TABLE OVERLAY ═════════════════════════ */
+#tbl-overlay{
+  position:fixed;
+  bottom:0;left:140px;right:0;
+  background:rgba(255,255,255,.62);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  border-top:1px solid rgba(0,0,0,.08);
+  z-index:50;
+  display:none;
+}
+#tbl-overlay.visible{ display:block; }
+
+#tbl-inner{
+  max-width:1360px;
+  margin:0 auto;
+}
+
+/* grid: 10 category cols */
+.tbl-row{
+  display:grid;
+  grid-template-columns:repeat(10,1fr);
+  border-bottom:1px solid #e8e8e8;
+}
+.tbl-row:first-child{border-top:1px solid #e8e8e8;}
+
+.cell{
+  padding:.55rem .9rem;
+  font-size:.72rem;
+  letter-spacing:.06em;
+  color:#bbb;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  text-align:center;
+  min-width:0;
+}
+
+/* section label */
+.cell-sec{
+  color:#111;font-weight:400;letter-spacing:.1em;
+  background:var(--beige-light);
+}
+
+/* category header */
+.cell-cat{
+  color:#111;cursor:pointer;
+  font-size:1.06rem;
+  font-weight:500;
+  transition:color .15s;
+  text-align:center;
+}
+.cell-cat:hover{color:#000;}
+.cell-cat.on{color:var(--gold);font-weight:400;}
+
+/* project name */
+.cell-proj{
+  color:#111;cursor:pointer;
+  font-size:.86rem;
+  font-weight:500;
+  font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;
+  transition:color .15s,background .15s;
+  text-align:center;
+  white-space:nowrap;
+  overflow:visible;
+  text-overflow:clip;
+  z-index:1;
+  position:relative;
+}
+.tbl-proj-row:hover{background:rgba(255,255,255,.45);cursor:pointer;}
+.tbl-proj-row:hover .cell-proj{color:#000;}
+
+/* nav section items */
+.cell-nav{
+  display:none;
+  color:#111;cursor:pointer;letter-spacing:.1em;
+  transition:background .15s;
+  grid-column:1;
+}
+.cell-nav:hover{background:#f5f4f2;}
+.cell-nav.open{color:var(--gold);background:var(--beige-light);}
+
+/* gap row */
+.tbl-gap{height:.8rem;border-bottom:1px solid #e8e8e8;background:#fafafa;}
+.tbl-gap .cell{background:#fafafa;}
+
+/* ══ SECTION PAGES ═════════════════════════ */
+.sec-page{
+  display:none;padding:3rem 2rem 4rem;
+  border-top:2px solid var(--gold);
+  animation:fu .35s ease both;
+  max-width:1360px;
+  margin:0 auto;
+}
+.sec-page.open{display:block;}
+@keyframes fu{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+
+.sp-label{font-size:.9rem;letter-spacing:.18em;color:#5e5e5e;padding-bottom:.55rem;border-bottom:1px solid #e0e0e0;margin-bottom:2.5rem;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:2rem;align-items:start;}
+.about-render-wrap{display:flex;align-items:flex-start;justify-content:center;padding-top:1rem;}
+.about-render{width:100%;height:auto;display:block;}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:2.5rem;}}
+.about-brand{display:flex;align-items:center;gap:1.1rem;margin-bottom:1.4rem;}
+.about-brand img{height:72px;width:auto;display:block;}
+.about-brand-zh{font-size:1.08rem;font-weight:600;letter-spacing:.04em;color:#111;line-height:1.5;}
+.about-brand-en{font-size:1.09rem;font-family:'Playfair Display',serif;font-weight:900;letter-spacing:.02em;color:#333;background:rgba(212,168,64,0.8);padding:.05em .3em;display:inline-block;}
+.about-p{font-size:.9rem;line-height:2.3;color:#474747;margin-bottom:.8rem;}
+.about-p strong{color:#111;font-weight:600;}
+.about-quote{font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;font-size:1rem;color:#7A9472;line-height:1.7;margin-bottom:1rem;letter-spacing:.02em;}
+.about-svc-title{font-size:.86rem;letter-spacing:.18em;color:#7A9472;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:800;margin-top:1.4rem;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid #e8e8e8;}
+.about-svc{list-style:none;margin:0;padding:0;}
+.about-svc li{font-size:.75rem;line-height:1.8;color:#555;padding:.28rem 0;border-bottom:1px solid #f2f2f2;padding-left:.9rem;position:relative;}
+.about-svc li::before{content:'—';position:absolute;left:0;color:var(--gold);}
+.info-tbl{margin-top:2rem;}
+.info-row{display:grid;grid-template-columns:110px 1fr;padding:.45rem 0;border-bottom:1px solid #f0f0f0;font-size:.7rem;}
+.info-l,.cd-l{display:flex;align-items:center;gap:.35rem;}
+.info-l{color:#ccc;letter-spacing:.1em;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;font-size:.87rem;}
+.row-icon{flex-shrink:0;opacity:.6;}
+.info-v{color:#444;font-size:.84rem;}
+.info-v a{color:#444;transition:color .2s;}.info-v a:hover{color:#111;}
+.map-icon-link{vertical-align:middle;display:inline-flex;opacity:.9;transition:opacity .2s;}.map-icon-link:hover{opacity:1;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:2rem;border-top:1px solid #e0e0e0;border-left:1px solid #e0e0e0;}
+.stat{padding:1.2rem;border-right:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0;}
+.stat-n{font-family:'EB Garamond',serif;font-size:1.9rem;color:#111;line-height:1;margin-bottom:.2rem;}
+.stat-n sup{font-size:.85rem;}
+.stat-l{font-size:.56rem;letter-spacing:.16em;color:#bbb;}
+.aw-label{font-size:.87rem;letter-spacing:.18em;color:#5e5e5e;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid #e0e0e0;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;}
+.aw-row{display:grid;grid-template-columns:1fr 50px;padding:.46rem 0;border-bottom:1px solid #f2f2f2;font-size:.72rem;}
+.aw-n{color:#444;}
+.aw-y{color:#ccc;text-align:right;letter-spacing:.08em;}
+
+/* Associates */
+.assoc-list{display:flex;flex-direction:column;gap:0;border-top:1px solid #e8e8e8;}
+.assoc-row{display:grid;grid-template-columns:100px 180px 1fr 1fr;align-items:start;gap:2rem;padding:1.6rem 0;border-bottom:1px solid #e8e8e8;}
+.assoc-photo{width:100px;height:120px;overflow:hidden;background:#e4e0da;flex-shrink:0;}
+.assoc-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(20%);transition:filter .4s;}
+.assoc-row:hover .assoc-photo img{filter:grayscale(0%);}
+.assoc-name{font-size:.92rem;font-weight:600;letter-spacing:.06em;color:#111;margin-bottom:.3rem;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;}
+.assoc-role{font-size:.75rem;letter-spacing:.08em;color:#7A9472;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;}
+.assoc-cred-title{font-size:.7rem;letter-spacing:.14em;color:#bbb;margin-bottom:.5rem;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;}
+.assoc-cred-list{list-style:none;padding:0;margin:0;}
+.assoc-cred-list li{font-size:.75rem;color:#555;line-height:1.9;}
+
+/* Publication */
+.pub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2.2rem;}
+@media(max-width:700px){.pub-grid{grid-template-columns:repeat(2,1fr);}}
+.pub-cover{aspect-ratio:3/4;overflow:hidden;background:#e8e4de;margin-bottom:.8rem;}
+.pub-cover img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.pub-item:hover .pub-cover img{transform:scale(1.04);}
+.pub-type{font-size:.84rem;letter-spacing:.16em;color:#bbb;margin-bottom:.3rem;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;}
+.pub-title{font-size:.75rem;line-height:1.55;color:#222;margin-bottom:.2rem;}
+.pub-year{font-size:.62rem;color:#ccc;}
+
+/* Publication empty state */
+.pub-empty{
+  display:flex;align-items:center;justify-content:center;
+  min-height:260px;
+  border:1px dashed #e0ddd6;
+  background:#faf9f6;
+}
+.pub-empty-inner{text-align:center;padding:3rem;}
+.pub-empty-title{
+  font-size:1rem;letter-spacing:.18em;color:#bbb;
+  margin-top:1.2rem;margin-bottom:.5rem;
+  font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;
+}
+.pub-empty-sub{font-size:.72rem;color:#ccc;letter-spacing:.06em;line-height:1.8;}
+
+/* News */
+.news-list{border-top:1px solid #e0e0e0;}
+.news-row{display:grid;grid-template-columns:100px 1fr 55px;align-items:center;gap:1.5rem;padding:.8rem 0;border-bottom:1px solid #ebebeb;cursor:pointer;transition:background .15s;}
+.news-row:hover{background:#f7f6f4;}
+.news-date{font-size:.62rem;letter-spacing:.1em;color:#c0bebb;}
+.news-cat{font-size:.84rem;letter-spacing:.12em;color:#bbb;margin-bottom:.2rem;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;}
+.news-title{font-size:.75rem;color:#333;line-height:1.5;}
+.news-arr{font-size:.62rem;color:#ccc;text-align:right;transition:color .2s;}
+.news-row:hover .news-arr{color:#111;}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:3rem;}}
+.contact-h{font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-size:1.4rem;font-weight:700;color:#7A9472;margin-bottom:1.4rem;line-height:1.3;}
+.cd-row{display:grid;grid-template-columns:110px 1fr;padding:.42rem 0;border-bottom:1px solid #f0f0f0;font-size:.7rem;}
+.cd-l{color:#ccc;letter-spacing:.1em;font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-weight:700;font-size:.87rem;}
+.cd-v{color:#444;font-size:.84rem;}
+.cd-v a{color:#444;transition:color .2s;}.cd-v a:hover{color:#111;}
+.map-wrap{width:100%;aspect-ratio:4/3;overflow:hidden;background:#e8e4de;margin-top:1.4rem;}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:grayscale(25%);}
+.cf-row{margin-bottom:1.3rem;}
+.cf-label{font-size:.58rem;letter-spacing:.2em;color:#bbb;margin-bottom:.42rem;display:block;}
+.cf-input,.cf-textarea,.cf-select{width:100%;background:transparent;border:none;border-bottom:1px solid #ddd;padding:.4rem 0;font-family:inherit;font-size:.75rem;color:#111;outline:none;resize:none;transition:border-color .25s;appearance:none;-webkit-appearance:none;}
+.cf-input:focus,.cf-textarea:focus,.cf-select:focus{border-bottom-color:#111;}
+.cf-textarea{min-height:85px;}
+.cf-submit{font-size:.63rem;letter-spacing:.2em;color:#fff;background:var(--gold);border:1px solid var(--gold);padding:.65rem 2rem;transition:background .25s,color .25s;margin-top:.5rem;}
+.cf-submit:hover{background:#fff;color:var(--gold);}
+
+/* ══ PROJECT OVERLAY ═══════════════════════ */
+#po{
+  display:none;position:fixed;inset:0;z-index:300;
+  background:#fff;overflow:hidden;
+  animation:fi .28s ease;
+}
+#po.open{display:flex;flex-direction:column;}
+@keyframes fi{from{opacity:0;}to{opacity:1;}}
+.po-hd{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.85rem 1.5rem;border-bottom:1px solid #5a7a56;
+  position:sticky;top:0;background:#7A9472;z-index:10;
+}
+.po-meta-hd{font-size:.78rem;letter-spacing:.18em;color:#fff;font-weight:400;}
+.po-close{font-size:.78rem;letter-spacing:.18em;color:#fff;font-weight:400;cursor:pointer;transition:opacity .2s;}
+.po-close:hover{opacity:.75;}
+
+/* 雙欄版型 */
+.po-body{
+  display:grid;
+  grid-template-columns:320px 1fr;
+  gap:0;
+  flex:1;
+  min-height:0;
+  overflow:hidden;
+}
+/* 左欄：文字 */
+.po-info{
+  padding:2.5rem 2rem;
+  border-right:1px solid #e8e8e8;
+  height:100%;
+  overflow-y:auto;
+}
+.po-title{font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-size:1.4rem;font-weight:400;font-style:normal;color:#111;margin-bottom:.4rem;line-height:1.3;white-space:nowrap;}
+.po-sub{font-size:.65rem;letter-spacing:.1em;color:#aaa;margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid #f0f0f0;}
+.po-desc{font-size:.76rem;line-height:2.3;color:#555;}
+/* 右欄：照片瀏覽器 */
+.po-gallery{
+  display:flex;
+  flex-direction:column;
+  background:#f2f0ec;
+  height:100%;
+  overflow:hidden;
+}
+/* 主圖區 */
+.po-main-img{
+  flex:1;
+  min-height:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem 4rem;
+  overflow:hidden;
+  cursor:zoom-in;
+  position:relative;
+}
+.po-main-img img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+  transition:opacity .3s ease;
+  box-shadow:0 4px 24px rgba(0,0,0,.18);
+}
+/* 左右箭頭 */
+.po-arrow{
+  position:absolute;
+  top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,.45);
+  color:#fff;border:none;cursor:pointer;
+  font-size:1.4rem;
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+  z-index:5;
+  user-select:none;
+}
+.po-arrow:hover{background:rgba(0,0,0,.75);}
+.po-arrow-prev{left:.8rem;}
+.po-arrow-next{right:.8rem;}
+/* 照片說明 */
+.po-caption{
+  position:absolute;
+  top:.9rem;left:.9rem;
+  padding:.28rem .7rem;
+  font-size:1.02rem;
+  letter-spacing:.08em;
+  color:#222;
+  font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;
+  pointer-events:none;
+  z-index:6;
+  transition:opacity .3s;
+}
+.po-caption:empty{display:none;}
+/* 計數 */
+.po-count{
+  position:absolute;bottom:1rem;right:1rem;
+  font-size:.62rem;letter-spacing:.1em;color:rgba(255,255,255,.6);
+}
+/* 縮圖列 */
+.po-thumbs{
+  display:flex;gap:4px;
+  padding:6px;
+  background:#111;
+  overflow-x:auto;
+  scrollbar-width:none;
+  height:90px;
+  flex-shrink:0;
+}
+.po-thumbs::-webkit-scrollbar{display:none;}
+.po-thumb{
+  flex:0 0 auto;
+  width:110px;height:78px;
+  overflow:hidden;
+  cursor:pointer;
+  opacity:.5;
+  transition:opacity .2s;
+}
+.po-thumb.active{opacity:1;outline:2px solid var(--gold);}
+.po-thumb:hover{opacity:.85;}
+.po-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* Lightbox */
+#po-lightbox{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.92);
+  align-items:center;justify-content:center;
+  cursor:zoom-out;
+}
+#po-lightbox.open{display:flex;}
+#po-lightbox img{
+  max-width:95vw;max-height:95vh;
+  object-fit:contain;
+  display:block;
+}
+
+/* 手機：單欄 */
+@media(max-width:768px){
+  .po-body{ grid-template-columns:1fr; }
+  .po-info{ position:static;height:auto;border-right:none;border-bottom:1px solid #e8e8e8; }
+  .po-main-img{ height:55vw; }
+  .po-thumbs{ height:70px; }
+  .po-thumb{ width:90px;height:58px; }
+}
+
+/* ══ HAMBURGER BUTTON ══════════════════════ */
+#hd-burger{
+  display:none;
+  flex-direction:column;justify-content:center;align-items:center;
+  gap:5px;padding:0 1.2rem;
+  border-left:1px solid #e0e0e0;
+  cursor:pointer;background:none;border-top:none;border-right:none;border-bottom:none;
+  height:100%;
+}
+#hd-burger span{
+  display:block;width:22px;height:2px;
+  background:#333;border-radius:2px;
+  transition:transform .3s,opacity .3s;
+}
+
+/* Sidebar overlay backdrop */
+#sidebar-backdrop{
+  display:none;
+  position:fixed;inset:0;z-index:99;
+  background:rgba(0,0,0,.3);
+}
+#sidebar-backdrop.open{display:block;}
+
+/* ══ MOBILE RWD ═════════════════════════════ */
+@media(max-width:768px){
+
+  /* Header — 只顯示 Logo，隱藏長文字 */
+  #hd{ height:60px; }
+  .hd-logo{ min-width:0;padding:0 1rem;gap:.6rem;border-right:none; }
+  .hd-logo img{ height:38px; }
+  .hd-logo-zh{ display:none; }
+  .hd-logo-en{ display:none; }
+  .hd-lang{ display:none; }
+  #hd-burger{ display:flex;margin-left:auto; }
+
+  /* Sidebar — slide in from left */
+  #sidebar{
+    top:60px;
+    transform:translateX(-100%);
+    transition:transform .3s ease;
+    z-index:150;
+    width:160px;
+    box-shadow:2px 0 12px rgba(0,0,0,.12);
+  }
+  #sidebar.open{ transform:translateX(0); }
+
+  /* Main */
+  #main{ margin-top:60px;margin-left:0; }
+
+  /* Hero 全螢幕 */
+  #hero{ height:calc(100vh - 60px); }
+
+  /* Table overlay: fixed 移除，改靜態，預設隱藏 */
+  #tbl-overlay{
+    position:static !important;
+    left:auto;right:auto;bottom:auto;
+    background:#fff;
+    border-top:2px solid var(--gold);
+    display:none;
+  }
+  #tbl-overlay.mobile-show{ display:block; }
+
+  /* Section pages 加白底 */
+  .sec-page{ background:#fff; }
+
+  /* Category row: horizontal scrollable tabs */
+  .tbl-header{
+    display:flex !important;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    border-bottom:1px solid #e8e8e8;
+  }
+  .tbl-header::-webkit-scrollbar{ display:none; }
+  .tbl-header .cell{
+    flex:0 0 auto;
+    width:88px;
+    border-left:none;
+    border-right:1px solid #e8e8e8;
+    font-size:.8rem;
+    padding:.6rem .5rem;
+  }
+
+  /* Project rows: block, hide empty cells */
+  .tbl-proj-row{
+    display:block !important;
+    border-bottom:1px solid #f0f0f0;
+  }
+  .tbl-proj-row .cell:empty{ display:none; }
+  .tbl-proj-row .cell-proj{
+    display:block;
+    width:100%;
+    padding:.55rem 1rem;
+    border:none;
+    text-align:left;
+    font-size:.82rem;
+  }
+
+  /* Section pages */
+  .sec-page{ padding:2rem 1rem 3rem; }
+  .about-grid{ grid-template-columns:1fr; }
+  .about-render-wrap{ display:none; }
+  .assoc-row{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    padding:1.2rem 0;
+  }
+  .assoc-photo{
+    width:100px !important;
+    height:120px !important;
+  }
+  .contact-grid{ grid-template-columns:1fr;gap:2rem; }
+  .map-wrap{ aspect-ratio:16/9; }
+  .stats{ grid-template-columns:repeat(3,1fr); }
+  .pub-grid{ grid-template-columns:repeat(2,1fr);gap:1.2rem; }
+  .news-row{ grid-template-columns:80px 1fr 30px;gap:.8rem; }
+
+  /* Footer */
+  footer{ flex-direction:column;text-align:center;gap:.8rem; }
+  .f-links{ justify-content:center; }
+}
+
+/* ══ FOOTER ════════════════════════════════ */
+footer{
+  border-top:1px solid #ddd;padding:1.2rem 1.2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.5rem;background:#fff;
+}
+.f-name{font-size:.62rem;letter-spacing:.08em;color:#bbb;}
+.f-copy{font-size:.58rem;color:#ccc;}
+.f-links{display:flex;gap:1.3rem;}
+.f-links a{font-size:.58rem;letter-spacing:.1em;color:#bbb;transition:color .2s;}
+.f-links a:hover{color:#111;}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hd">
+  <div class="hd-logo">
+    <img src="YCLA_logo.png" alt="YCL Architects Logo" />
+    <div>
+      <div class="hd-logo-zh">楊承霖建築師事務所＋群山建築設計</div>
+      <div class="hd-logo-en">YCL<span style="color:#8BA583">A</span>rchitects+ ChunShan <span style="color:#8BA583">A</span>ssociates</div>
+    </div>
+  </div>
+  <div class="hd-lang">
+    <button class="on" id="btnZh">中</button>
+    <button id="btnEn">EN</button>
+  </div>
+  <button id="hd-burger" aria-label="選單">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<div id="sidebar-backdrop"></div>
+
+<!-- FIXED SIDEBAR -->
+<div id="sidebar">
+  <div class="sb-item">設計作品</div>
+  <div class="sb-item nav-item" data-section="about">關於我們</div>
+  <div class="sb-item nav-item" data-section="associates">工作夥伴</div>
+  <div class="sb-item nav-item" data-section="publication">媒體發表</div>
+  <div class="sb-item nav-item" data-section="news">消息動態</div>
+  <div class="sb-item nav-item" data-section="contact">聯絡我們</div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- HERO + SLIDESHOW -->
+  <div id="hero">
+    <div class="slide-bg active" style="background-image:url('slides/01.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/02.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/03.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/04.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/05.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/469481848_594528429635517_2827771490158348901_n.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/469522774_594528046302222_972389122928620691_n.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/469542866_594527996302227_2016797072992879994_n.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/469585430_594528762968817_550098221016948621_n.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/469778241_594528039635556_5745198564618601852_n.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/473008185_618603753894651_4510684243388015470_n.jpg')"></div>
+    <div class="slide-bg" style="background-image:url('slides/473268963_618603763894650_1231967263254074335_n.jpg')"></div>
+
+    <!-- Dots -->
+    <div id="slide-dots"></div>
+
+  </div>
+
+  <!-- Project table (fixed bottom on desktop, static on mobile) -->
+  <div id="tbl-overlay">
+    <div id="tbl-inner">
+      <div id="tbl-wrap"></div>
+    </div>
+  </div>
+
+  <!-- Section pages -->
+  <div class="sec-page" id="sp-about">
+    <p class="sp-label">ABOUT　關於我們</p>
+    <div class="about-grid">
+      <div>
+        <div class="about-brand">
+          <img src="YCLA_logo.png" alt="YCL Architects Logo" />
+          <div>
+            <div class="about-brand-zh">楊承霖建築師事務所＋群山建築設計</div>
+            <div class="about-brand-en">YCL<span style="color:#8BA583">A</span>rchitects+ ChunShan <span style="color:#8BA583">A</span>ssociates</div>
+          </div>
+        </div>
+        <p class="about-quote">「在彰化的土地紮根，讓設計與環境對話。」</p>
+        <p class="about-p">本所立足彰化並在台中、南投、雲林持續耕耘。</p>
+        <p class="about-p">我們認為建築不該只是外殼，更包含內在的生活感；因此，我們整合了建築與室內設計兩條軸線，從土地法規的理智判斷，到室內細節的感性觸摸，都由同一個團隊全方位把關。</p>
+        <p class="about-p">在複雜的行政規範與環境條件下，我們始終在尋求那個最精確的平衡點，為每一位業主完成完整的空間實踐。</p>
+        <p class="about-svc-title">■承攬業務</p>
+        <ul class="about-svc">
+          <li>自地自建　建築設計　室內設計　環境整合</li>
+          <li>土地評估</li>
+          <li>土地變更</li>
+          <li>特定工廠合法化</li>
+          <li>協助建設公司評估（社區透天、集合住宅）</li>
+          <li>建築物變更使用</li>
+          <li>建築物室內裝修申請</li>
+          <li>建築物公安申報</li>
+        </ul>
+        <div class="info-tbl">
+          <div class="info-row"><span class="info-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>ADDRESS</span><span class="info-v">彰化縣彰化市三民路237巷27-2號　<a href="https://maps.app.goo.gl/aD3nWMWXqPwK2zn49" target="_blank" class="map-icon-link" title="在 Google Maps 開啟"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Google_Maps_icon_%282015-2020%29.svg/960px-Google_Maps_icon_%282015-2020%29.svg.png" alt="Google Maps" style="height:23px;width:auto;vertical-align:middle;display:inline-block;" /></a></span></div>
+          <div class="info-row"><span class="info-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.27 6.27l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>TEL</span><span class="info-v"><a href="tel:+886-4-7227177">04-7227177</a></span></div>
+          <div class="info-row"><span class="info-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>EMAIL</span><span class="info-v"><a href="mailto:yclarch@gmail.com">yclarch@gmail.com</a></span></div>
+          <div class="info-row"><span class="info-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>HOURS</span><span class="info-v">Mon – Fri　09:00 – 18:00</span></div>
+          <div class="info-row"><span class="info-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>SOCIAL</span><span class="info-v"><a href="https://www.facebook.com/ChunShan.YCLArchitects.Associates" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="#1877F2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a> ／ <a href="https://www.instagram.com/ycl_arch/" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-grad)"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="url(#ig-grad)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="url(#ig-grad)"/></svg>Instagram</a></span></div>
+        </div>
+        <div class="stats" style="display:none">
+          <div class="stat"><div class="stat-n">50<sup>+</sup></div><div class="stat-l">PROJECTS</div></div>
+          <div class="stat"><div class="stat-n">14<sup>yr</sup></div><div class="stat-l">PRACTICE</div></div>
+          <div class="stat"><div class="stat-n">8<sup>+</sup></div><div class="stat-l">AWARDS</div></div>
+        </div>
+      </div>
+      <div class="about-render-wrap">
+        <img src="render01.png" alt="建築透視圖" class="about-render" />
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-page" id="sp-associates">
+    <p class="sp-label">ASSOCIATES　工作夥伴</p>
+    <div class="assoc-list">
+      <div class="assoc-row">
+        <div class="assoc-photo" style="width:130px;height:156px;"><img src="yang-photo.jpg" alt="楊承霖" loading="lazy" /></div>
+        <div>
+          <p class="assoc-name">楊承霖</p>
+          <p class="assoc-role">主持建築師<br/>Principal Architect</p>
+        </div>
+        <div>
+          <p class="assoc-cred-title">學歷 ／ 證照</p>
+          <ul class="assoc-cred-list">
+            <li>■ 雲林科技大學－建築與室內設計系（建築學士）</li>
+            <li>■ 成功大學建築研究所－設計規劃組（肄業）</li>
+            <li>■ 中華民國建築師高考合格</li>
+            <li>■ 彰化縣註冊開業建築師</li>
+            <li>■ 室內裝修專業技術人員</li>
+            <li>■ 建築物設置無障礙設施設備勘檢人員</li>
+            <li>■ 建築物公共安全檢查專業人員</li>
+          </ul>
+        </div>
+        <div>
+          <p class="assoc-cred-title">工作經歷</p>
+          <ul class="assoc-cred-list">
+            <li>● 陳文慶建築師事務所（彰化）</li>
+            <li>● 陳明偉建築師事務所（台中）</li>
+            <li>● 蘇懋彬建築師事務所（台中）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="assoc-row">
+        <div class="assoc-photo assoc-silhouette"><svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100" height="120" fill="#d8d4cc"/><ellipse cx="50" cy="38" rx="18" ry="20" fill="#a8a49c"/><path d="M10,120 Q10,78 50,78 Q90,78 90,120 Z" fill="#a8a49c"/></svg></div>
+        <div>
+          <p class="assoc-name">Alex Aw</p>
+          <p class="assoc-role">協同建築師<br/>Associate Architect</p>
+        </div>
+        <div>
+          <p class="assoc-cred-title">學歷 ／ 證照</p>
+          <ul class="assoc-cred-list">
+            <li>■ 雲林科技大學－建築與室內設計系（建築學士）</li>
+            <li>■ 成功大學建築研究所－設計規劃組　碩士</li>
+            <li>■ 中華民國建築師高考合格</li>
+          </ul>
+        </div>
+        <div>
+          <p class="assoc-cred-title">工作經歷</p>
+          <ul class="assoc-cred-list">
+            <li>■ （請填入工作經歷）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="assoc-row">
+        <div class="assoc-photo assoc-silhouette"><svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100" height="120" fill="#d8d4cc"/><ellipse cx="50" cy="38" rx="18" ry="20" fill="#a8a49c"/><path d="M10,120 Q10,78 50,78 Q90,78 90,120 Z" fill="#a8a49c"/></svg></div>
+        <div>
+          <p class="assoc-name">劉殷成</p>
+          <p class="assoc-role">專案建築師<br/>Project Architect</p>
+        </div>
+        <div>
+          <p class="assoc-cred-title">學歷 ／ 證照</p>
+          <ul class="assoc-cred-list">
+            <li>■ 雲林科技大學　建築學士</li>
+          </ul>
+        </div>
+        <div>
+          <p class="assoc-cred-title">工作經歷</p>
+          <ul class="assoc-cred-list">
+            <li>■ （請填入工作經歷）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-page" id="sp-publication">
+    <p class="sp-label">PUBLICATION　媒體發表</p>
+    <div class="pub-empty">
+      <div class="pub-empty-inner">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d4cebc" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <p class="pub-empty-title">內容籌備中</p>
+        <p class="pub-empty-sub">作品集、文章與展覽紀錄即將上線。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-page" id="sp-news">
+    <p class="sp-label">NEWS　消息動態</p>
+    <div class="news-list" style="display:none">
+      <div class="news-row"><span class="news-date">2025.03.15</span><div><p class="news-cat">PROJECT</p><p class="news-title">「山丘之宅」入選 2025 台灣建築獎初選名單</p></div><span class="news-arr">→</span></div>
+      <div class="news-row"><span class="news-date">2024.11.08</span><div><p class="news-cat">EXHIBITION</p><p class="news-title">「光的邊界」建築展，即將於台中文化創意產業園區展出</p></div><span class="news-arr">→</span></div>
+      <div class="news-row"><span class="news-date">2024.09.20</span><div><p class="news-cat">AWARD</p><p class="news-title">2024 台灣建築獎，「山丘之宅」榮獲優選肯定</p></div><span class="news-arr">→</span></div>
+      <div class="news-row"><span class="news-date">2024.07.03</span><div><p class="news-cat">LECTURE</p><p class="news-title">主持建築師楊承霖受邀於逢甲大學發表「材料、光與身體感」專題演講</p></div><span class="news-arr">→</span></div>
+      <div class="news-row"><span class="news-date">2024.04.15</span><div><p class="news-cat">PUBLICATION</p><p class="news-title">YCL＋QS 作品集 Vol.2 正式出版，收錄近年代表作品 20 件</p></div><span class="news-arr">→</span></div>
+    </div>
+  </div>
+
+  <div class="sec-page" id="sp-contact">
+    <p class="sp-label">CONTACT　聯絡我們</p>
+    <div class="contact-grid">
+      <div>
+
+        <div class="cd-row"><span class="cd-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>ADDRESS</span><span class="cd-v">彰化縣彰化市三民路237巷27-2號　<a href="https://maps.app.goo.gl/aD3nWMWXqPwK2zn49" target="_blank" class="map-icon-link" title="在 Google Maps 開啟"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Google_Maps_icon_%282015-2020%29.svg/960px-Google_Maps_icon_%282015-2020%29.svg.png" alt="Google Maps" style="height:23px;width:auto;vertical-align:middle;display:inline-block;" /></a></span></div>
+        <div class="cd-row"><span class="cd-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.27 6.27l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>TEL</span><span class="cd-v"><a href="tel:+886-4-7227177">04-7227177</a></span></div>
+        <div class="cd-row"><span class="cd-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>EMAIL</span><span class="cd-v"><a href="mailto:yclarch@gmail.com">yclarch@gmail.com</a></span></div>
+        <div class="cd-row"><span class="cd-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>HOURS</span><span class="cd-v">Mon – Fri　09:00 – 18:00</span></div>
+        <div class="cd-row"><span class="cd-l"><svg class="row-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>SOCIAL</span><span class="cd-v"><a href="https://www.facebook.com/ChunShan.YCLArchitects.Associates" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="#1877F2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a> ／ <a href="https://www.instagram.com/ycl_arch/" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="ig-grad2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f09433"/><stop offset="25%" stop-color="#e6683c"/><stop offset="50%" stop-color="#dc2743"/><stop offset="75%" stop-color="#cc2366"/><stop offset="100%" stop-color="#bc1888"/></linearGradient></defs><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="url(#ig-grad2)"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke="url(#ig-grad2)"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="url(#ig-grad2)"/></svg>Instagram</a></span></div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1380.4252635996666!2d120.5424719!3d24.0868115!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3469394128ec3fcf%3A0xce2e6e6b80a717a4!2z5qWK5om_6ZyW5bu656-J5bir5LqL5YuZ5omA!5e1!3m2!1szh-TW!2stw!4v1775917792924!5m2!1szh-TW!2stw" title="地址" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div>
+        <form id="contact-form">
+          <div class="cf-row"><label class="cf-label">NAME　姓名</label><input id="cf-name" class="cf-input" type="text" placeholder="您的姓名" /></div>
+          <div class="cf-row"><label class="cf-label">EMAIL　信箱</label><input id="cf-email" class="cf-input" type="email" placeholder="your@email.com" /></div>
+          <div class="cf-row"><label class="cf-label">TEL　電話</label><input id="cf-tel" class="cf-input" type="tel" placeholder="0900-000-000" /></div>
+          <div class="cf-row"><label class="cf-label">LINE　帳號</label><input id="cf-line" class="cf-input" type="text" placeholder="LINE ID" /></div>
+          <div class="cf-row">
+            <label class="cf-label">PROJECT TYPE　專案類型</label>
+            <select id="cf-type" class="cf-select">
+              <option value="" disabled selected>住宅 ／ 商業 ／ 公共…</option>
+              <option>私人住宅</option><option>連棟透天</option><option>集合住宅</option>
+              <option>公共建築</option><option>室內設計</option><option>其他</option>
+            </select>
+          </div>
+          <div class="cf-row"><label class="cf-label">MESSAGE　說明</label><textarea id="cf-msg" class="cf-textarea" placeholder="請簡述您的需求…"></textarea></div>
+          <div id="cf-error" style="display:none;color:#c0392b;font-size:.72rem;margin-bottom:.8rem;">請至少填寫「電話」或「Email 信箱」其中一項，再送出。</div>
+          <button class="cf-submit" type="submit">SEND MESSAGE　送出</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT OVERLAY -->
+<div id="po">
+  <div class="po-hd">
+    <span class="po-meta-hd" id="po-meta-hd"></span>
+    <span class="po-close" id="po-close">← Back</span>
+  </div>
+  <div class="po-body">
+    <div class="po-info">
+      <h2 class="po-title" id="po-title"></h2>
+      <p class="po-sub" id="po-sub"></p>
+      <p class="po-desc" id="po-desc"></p>
+    </div>
+    <div class="po-gallery" id="po-gallery">
+      <!-- 主圖區 -->
+      <div class="po-main-img" id="po-main-img">
+        <img id="po-main-photo" src="" alt="" />
+        <span class="po-caption" id="po-caption"></span>
+        <button class="po-arrow po-arrow-prev" id="po-prev">&#8249;</button>
+        <button class="po-arrow po-arrow-next" id="po-next">&#8250;</button>
+        <span class="po-count" id="po-count"></span>
+      </div>
+      <!-- 縮圖列 -->
+      <div class="po-thumbs" id="po-thumbs"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="po-lightbox">
+  <img id="po-lb-img" src="" alt="" />
+</div>
+
+<footer>
+  <span class="f-name">楊承霖建築師事務所＋群山建築設計</span>
+  <span class="f-copy">© 2025 YCLArchitects+ ChunShan Associates</span>
+  <div class="f-links">
+    <a href="https://www.facebook.com/ChunShan.YCLArchitects.Associates" target="_blank">Facebook</a>
+    <a href="https://www.instagram.com/ycl_arch/" target="_blank">Instagram</a>
+    <a href="mailto:yclarch@gmail.com">Email</a>
+    <a href="tel:+886-4-7227177">04-7227177</a>
+  </div>
+</footer>
+
+<script>
+/* ─── Data ──────────────────────────────────────── */
+const CATS = [
+  { key:'住宅',   label:'私人住宅' },
+  { key:'連棟',   label:'連棟透天' },
+  { key:'集合',   label:'集合住宅' },
+  { key:'廠辦',   label:'廠辦'     },
+  { key:'公共',   label:'公共'     },
+  { key:'規劃',   label:'規劃'     },
+  { key:'室內',   label:'室內暨景觀'},
+  { key:'設計',   label:'設計'     },
+  { key:'合作',   label:'合作專案' },
+  { key:'未執行', label:'未執行'   },
+];
+
+const PROJECTS = {
+  '住宅': [
+    { name:'彰化市延平段－莊宅', sub:'Houses ／ 2022 ／ 彰化市', imgs:['projects/zhuang/01.jpg','projects/zhuang/02.jpg','projects/zhuang/03.jpg','projects/zhuang/04.jpg'], captions:['建築物外觀模擬','中庭挑空（側面採光）','一樓車庫','實際施工照片'], desc:'基地位於彰化市延平段，…' },
+    { name:'伸港鄉－梅宅', sub:'Houses ／ 2022 ／ 彰化縣伸港鄉', imgs:['projects/mei/03.jpg','projects/mei/04.jpg','projects/mei/05.jpg','projects/mei/06.jpg','projects/mei/07.jpg','projects/mei/08.jpg'], desc:'以「靜」為設計核心，透過窄長天井引入光線，每個角落都是一幅靜物畫。' },
+    { name:'003之宅', sub:'Houses ／ 2019 ／ 彰化', img:'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1400&q=85', desc:'建於彰化縣農業地景中的透天住宅，以鏽鐵板、木格柵與白粉牆構成素樸的生活空間。' },
+    { name:'004之宅', sub:'Houses ／ 2020 ／ 彰化', img:'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1400&q=85', desc:'位於員林鄉間的獨棟住宅，以雙層立面控制日照與通風，形成自然調節的居住微氣候。' },
+    { name:'005之宅', sub:'Houses ／ 2021 ／ 彰化', img:'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1400&q=85', desc:'全白量體以簡馭繁，透過開口位置與大小的精準控制，讓光成為空間的主要材料。' },
+    { name:'006之宅', sub:'Houses ／ 2022 ／ 南投', img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=85', desc:'倚山而建，以石材基座銜接地形，木構屋頂向山谷展開，是一次關於棲居與自然的對話。' },
+  ],
+  '連棟': [
+    { name:'001之-連棟住宅', sub:'Row Houses ／ 2019 ／ 彰化', img:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=85', desc:'面寬4米的連棟街屋改建，以清水混凝土立面重新回應街道紋理，在密集都市中找回建築的尊嚴。' },
+    { name:'002之-連棟住宅', sub:'Row Houses ／ 2021 ／ 彰化', img:'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=85', desc:'老市區的街屋改建，以金屬格柵為表情，保留舊有RC結構，讓歷史感延續於新的皮層之下。' },
+  ],
+  '集合': [
+    { name:'城市之丘集合住宅', sub:'Housing ／ 2021 ／ 台中', img:'https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=1400&q=85', desc:'24戶集合住宅，以錯層陽台創造公共性，共享天台菜園成為社區凝聚的核心。' },
+  ],
+  '廠辦': [
+    { name:'廟宇修繕計畫', sub:'Religious ／ 2020 ／ 彰化', img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=85', desc:'百年廟宇的修繕與增建，以現代技術保存傳統斗拱彩繪，並新增無障礙設施與廣場空間。' },
+  ],
+  '公共': [
+    { name:'竹林社區中心',   sub:'Public ／ 2023 ／ 南投', img:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=85', desc:'以在地竹材為主要結構，結合RC基座，創造一個輕盈通透的社區聚集場所。' },
+    { name:'鄉立圖書館改造', sub:'Public ／ 2018 ／ 彰化', img:'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400&q=85', desc:'舊農會倉庫再生為圖書館，保留原有鋼骨屋架，以輕量隔間重新定義閱讀空間的層次。' },
+  ],
+  '規劃': [
+    { name:'舊城區再生規劃', sub:'Planning ／ 2020 ／ 彰化', img:'https://images.unsplash.com/photo-1567361808960-dec9cb578182?w=1400&q=85', desc:'彰化舊城核心區的都市更新規劃，以「慢行街道」為策略軸線，串連歷史場域與現代生活。' },
+  ],
+  '室內': [
+    { name:'茶屋室內設計',   sub:'Interior ／ 2022 ／ 彰化', img:'https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1400&q=85', desc:'以桂竹、和紙燈罩與素面抹灰牆構成的茶室空間，在城市中心創造一個脫離時間的靜謐所在。' },
+    { name:'辦公室空間改造', sub:'Interior ／ 2024 ／ 彰化', img:'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1400&q=85', desc:'事務所自用辦公空間改造，以通透性和自然採光為核心，工作與創作在此和諧共存。' },
+  ],
+  '設計': [
+    { name:'傢具設計系列', sub:'Design ／ 2020 ／ 彰化', img:'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1400&q=85', desc:'以台灣檜木與鐵件設計的傢具系列，每件作品都是對材料本質的一次誠實探索。' },
+  ],
+  '合作': [
+    { name:'市集空間合作案', sub:'Collaboration ／ 2021 ／ 台中', img:'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=85', desc:'與地方文化組織合作的臨時市集建築，以可拆解的木構模組系統回應彈性使用的需求。' },
+  ],
+  '未執行': [
+    { name:'山坡地住宅提案', sub:'Un-Built ／ 2022', img:'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1400&q=85', desc:'一個關於山坡地居住的實驗性提案，以梯田邏輯組織空間，讓建築成為地形的延伸。' },
+  ],
+};
+
+const NAV_SECTIONS = [
+  { key:'about',       label:'關於我們' },
+  { key:'associates',  label:'工作夥伴' },
+  { key:'publication', label:'媒體發表' },
+  { key:'news',        label:'消息動態' },
+  { key:'contact',     label:'聯絡我們' },
+];
+
+/* ─── Render table ───────────────────────────────── */
+let activeCat = '住宅';
+let activeNav = null;
+
+function buildTableHeader() {
+  const wrap = document.getElementById('tbl-wrap');
+  let hdr = wrap.querySelector('.tbl-header');
+  if (!hdr) {
+    hdr = makeRow();
+    hdr.classList.add('tbl-header');
+    CATS.forEach(c => {
+      const cell = makeCell(c.label, 'cell-cat');
+      cell.dataset.catKey = c.key;
+      cell.addEventListener('mouseenter', () => {
+        if (activeCat === c.key) return;
+        activeCat = c.key;
+        activeNav = null;
+        closeAllSections();
+        updateSidebar();
+        refreshCatHighlight();
+        buildProjectRows();
+      });
+      hdr.appendChild(cell);
+    });
+    wrap.insertBefore(hdr, wrap.firstChild);
+  }
+}
+
+function refreshCatHighlight() {
+  const wrap = document.getElementById('tbl-wrap');
+  wrap.querySelectorAll('.cell-cat').forEach(cell => {
+    cell.classList.toggle('on', cell.dataset.catKey === activeCat);
+  });
+}
+
+function getProjYear(p) {
+  const m = (p.sub || '').match(/\d{4}/);
+  return m ? parseInt(m[0]) : 0;
+}
+
+function buildProjectRows() {
+  const wrap = document.getElementById('tbl-wrap');
+  wrap.querySelectorAll('.tbl-proj-row').forEach(r => r.remove());
+
+  const projs = [...(PROJECTS[activeCat] || [])].sort((a, b) => getProjYear(b) - getProjYear(a));
+  const catIdx = CATS.findIndex(c => c.key === activeCat);
+  const maxRows = Math.max(...Object.values(PROJECTS).map(a => a.length));
+
+  for (let i = 0; i < maxRows; i++) {
+    const p = projs[i];
+    const row = makeRow();
+    row.classList.add('tbl-proj-row');
+    if (p) row.addEventListener('click', () => openProject(p));
+    CATS.forEach((c, ci) => {
+      const label = (ci === catIdx && p) ? `[${getProjYear(p)}] ${p.name}` : '';
+      row.appendChild(makeCell(label, ci === catIdx && p ? 'cell-proj' : ''));
+    });
+    wrap.appendChild(row);
+  }
+}
+
+function buildTable() {
+  const wrap = document.getElementById('tbl-wrap');
+  wrap.innerHTML = '';
+  buildTableHeader();
+  refreshCatHighlight();
+  buildProjectRows();
+}
+
+function makeRow() {
+  const div = document.createElement('div');
+  div.className = 'tbl-row';
+  return div;
+}
+
+function makeCell(text, cls) {
+  const div = document.createElement('div');
+  div.className = 'cell' + (cls ? ' '+cls : '');
+  div.textContent = text;
+  return div;
+}
+
+/* ─── Sidebar ────────────────────────────────────── */
+function updateSidebar() {
+  document.querySelectorAll('#sidebar .nav-item').forEach(el => {
+    el.classList.toggle('open', el.dataset.section === activeNav);
+  });
+}
+
+function showProjectTable(){
+  const overlay = document.getElementById('tbl-overlay');
+  if(window.innerWidth <= 768){
+    overlay.classList.add('mobile-show');
+    setTimeout(() => overlay.scrollIntoView({ behavior:'smooth', block:'start' }), 50);
+  } else {
+    overlay.classList.add('visible');
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+}
+
+function hideProjectTable(){
+  const overlay = document.getElementById('tbl-overlay');
+  overlay.classList.remove('visible');
+  overlay.classList.remove('mobile-show');
+}
+
+document.querySelector('#sidebar .sb-item:first-child').addEventListener('click', () => {
+  closeAllSections();
+  activeNav = null;
+  updateSidebar();
+  showProjectTable();
+});
+
+document.querySelectorAll('#sidebar .nav-item').forEach(el => {
+  el.addEventListener('click', () => {
+    const key = el.dataset.section;
+    const page = document.getElementById('sp-' + key);
+    const isOpen = page.classList.contains('open');
+    closeAllSections();
+    hideProjectTable();
+    activeNav = isOpen ? null : key;
+    if (!isOpen) {
+      page.classList.add('open');
+      scrollToSection(page);
+    }
+    updateSidebar();
+  });
+});
+
+/* ─── Section toggle ─────────────────────────────── */
+function closeAllSections() {
+  document.querySelectorAll('.sec-page').forEach(p => p.classList.remove('open'));
+}
+
+function scrollToSection(el) {
+  const top = el.getBoundingClientRect().top + window.scrollY - 88;
+  window.scrollTo({ top, behavior:'smooth' });
+}
+
+function toggleSection(key) {
+  const page = document.getElementById('sp-' + key);
+  const isOpen = page.classList.contains('open');
+  closeAllSections();
+  activeNav = isOpen ? null : key;
+  if (!isOpen) {
+    page.classList.add('open');
+    scrollToSection(page);
+  }
+  updateSidebar();
+}
+
+/* ─── Project overlay ────────────────────────────── */
+let _galleryImgs     = [];
+let _galleryCaptions = [];
+let _galleryIdx      = 0;
+let _slideshowCount  = 0;
+let _slideshowTimer  = null;
+
+function clearSlideshowTimer() {
+  if (_slideshowTimer) { clearInterval(_slideshowTimer); _slideshowTimer = null; }
+}
+
+function showSlide(n) {
+  if(_galleryImgs.length === 0) return;
+  _galleryIdx = (n + _galleryImgs.length) % _galleryImgs.length;
+  const mainPhoto = document.getElementById('po-main-photo');
+  mainPhoto.style.opacity = 0;
+  setTimeout(() => {
+    mainPhoto.src = _galleryImgs[_galleryIdx];
+    mainPhoto.style.opacity = 1;
+  }, 150);
+  document.getElementById('po-caption').textContent =
+    _galleryCaptions[_galleryIdx] || '';
+  document.getElementById('po-count').textContent =
+    (_galleryIdx + 1) + ' / ' + _galleryImgs.length;
+  document.querySelectorAll('.po-thumb').forEach((th, i) => {
+    th.classList.toggle('active', i === _galleryIdx);
+  });
+}
+
+function openProject(p) {
+  document.getElementById('po-meta-hd').textContent = p.sub;
+  document.getElementById('po-title').textContent   = p.name;
+  document.getElementById('po-sub').textContent     = p.sub;
+  document.getElementById('po-desc').textContent    = p.desc;
+
+  _galleryImgs     = p.imgs && p.imgs.length ? p.imgs : (p.img ? [p.img] : []);
+  _galleryCaptions = p.captions || [];
+  _slideshowCount  = p.slideshow || 0;
+  _galleryIdx      = 0;
+  clearSlideshowTimer();
+  document.getElementById('po-caption').textContent = _galleryCaptions[0] || '';
+
+  const thumbsEl = document.getElementById('po-thumbs');
+  thumbsEl.innerHTML = '';
+
+  if(_galleryImgs.length === 0){
+    document.getElementById('po-main-photo').src = '';
+    document.getElementById('po-count').textContent = '';
+    thumbsEl.innerHTML = '<p style="color:#ccc;font-size:.75rem;padding:1rem;">照片即將上傳</p>';
+    document.getElementById('po-prev').style.display = 'none';
+    document.getElementById('po-next').style.display = 'none';
+  } else {
+    document.getElementById('po-prev').style.display = _slideshowCount ? 'none' : '';
+    document.getElementById('po-next').style.display = (_galleryImgs.length > 1 && !_slideshowCount) ? '' : 'none';
+
+    // 縮圖：slideshow 模式只顯示第 slideshowCount 張，其餘顯示全部
+    const thumbStart = _slideshowCount > 0 ? _slideshowCount - 1 : 0;
+    _galleryImgs.forEach((src, i) => {
+      if (_slideshowCount > 0 && i < _slideshowCount - 1) return; // 跳過前兩張
+      const th = document.createElement('div');
+      th.className = 'po-thumb' + (i === 0 ? ' active' : '');
+      const img = document.createElement('img');
+      img.src = src; img.loading = 'lazy'; img.alt = p.name;
+      th.appendChild(img);
+      th.addEventListener('click', () => { clearSlideshowTimer(); showSlide(i); });
+      thumbsEl.appendChild(th);
+    });
+
+    const mainPhoto = document.getElementById('po-main-photo');
+    mainPhoto.src = _galleryImgs[0];
+    mainPhoto.style.opacity = 1;
+    document.getElementById('po-count').textContent = _slideshowCount ? '' : '1 / ' + _galleryImgs.length;
+
+    // 啟動 slideshow 自動輪播
+    if (_slideshowCount > 0) {
+      _slideshowTimer = setInterval(() => {
+        showSlide((_galleryIdx + 1) % _slideshowCount);
+      }, 3000);
+    }
+  }
+
+  document.getElementById('po').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProject() {
+  clearSlideshowTimer();
+  document.getElementById('po').classList.remove('open');
+  document.body.style.overflow = '';
+  closeLightbox();
+}
+
+function openLightbox() {
+  if(_galleryImgs.length === 0) return;
+  document.getElementById('po-lb-img').src = _galleryImgs[_galleryIdx];
+  document.getElementById('po-lightbox').classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('po-lightbox').classList.remove('open');
+}
+
+document.getElementById('po-prev').addEventListener('click', () => showSlide(_galleryIdx - 1));
+document.getElementById('po-next').addEventListener('click', () => showSlide(_galleryIdx + 1));
+document.getElementById('po-main-img').addEventListener('click', function(e){
+  if(!e.target.classList.contains('po-arrow')) openLightbox();
+});
+document.getElementById('po-lightbox').addEventListener('click', closeLightbox);
+document.getElementById('po-close').addEventListener('click', closeProject);
+
+document.addEventListener('keydown', e => {
+  if(document.getElementById('po-lightbox').classList.contains('open')){
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft')  { showSlide(_galleryIdx - 1); document.getElementById('po-lb-img').src = _galleryImgs[_galleryIdx]; }
+    if(e.key === 'ArrowRight') { showSlide(_galleryIdx + 1); document.getElementById('po-lb-img').src = _galleryImgs[_galleryIdx]; }
+    return;
+  }
+  if(document.getElementById('po').classList.contains('open')){
+    if(e.key === 'Escape')      closeProject();
+    if(e.key === 'ArrowLeft')   showSlide(_galleryIdx - 1);
+    if(e.key === 'ArrowRight')  showSlide(_galleryIdx + 1);
+  }
+});
+
+/* ─── Hamburger menu ─────────────────────────────── */
+(function(){
+  const burger   = document.getElementById('hd-burger');
+  const sidebar  = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  function openMenu(){ sidebar.classList.add('open'); backdrop.classList.add('open'); }
+  function closeMenu(){ sidebar.classList.remove('open'); backdrop.classList.remove('open'); }
+  burger.addEventListener('click', () =>
+    sidebar.classList.contains('open') ? closeMenu() : openMenu()
+  );
+  backdrop.addEventListener('click', closeMenu);
+  sidebar.querySelectorAll('.nav-item,.sb-item').forEach(el =>
+    el.addEventListener('click', closeMenu)
+  );
+})();
+
+/* ─── Lang toggle ────────────────────────────────── */
+document.getElementById('btnZh').addEventListener('click', function(){
+  this.classList.add('on'); document.getElementById('btnEn').classList.remove('on');
+});
+document.getElementById('btnEn').addEventListener('click', function(){
+  this.classList.add('on'); document.getElementById('btnZh').classList.remove('on');
+});
+
+/* ─── Contact form ───────────────────────────────── */
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name  = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const tel   = document.getElementById('cf-tel').value.trim();
+  const line  = document.getElementById('cf-line').value.trim();
+  const type  = document.getElementById('cf-type').value;
+  const msg   = document.getElementById('cf-msg').value.trim();
+  const err   = document.getElementById('cf-error');
+
+  if (!email && !tel) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  const subject = `【網站詢問】${name || '未提供姓名'}`;
+  const body =
+    `姓名：${name || '—'}\n` +
+    `電話：${tel  || '—'}\n` +
+    `Email：${email || '—'}\n` +
+    `LINE：${line || '—'}\n` +
+    `專案類型：${type || '—'}\n\n` +
+    `說明：\n${msg || '—'}`;
+
+  window.location.href =
+    `mailto:yclarch@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+});
+
+/* ─── Slideshow ──────────────────────────────────── */
+(function(){
+  const slides = document.querySelectorAll('.slide-bg');
+  const dotsWrap = document.getElementById('slide-dots');
+  let cur = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[cur].classList.remove('active');
+    dotsWrap.children[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dotsWrap.children[cur].classList.add('active');
+  }
+
+  setInterval(() => goTo(cur + 1), 3500);
+})();
+
+/* ─── Init ───────────────────────────────────────── */
+buildTable();
+</script>
+</body>
+</html>

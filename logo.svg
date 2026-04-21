@@ -1,0 +1,8 @@
+<svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Beige center mountain (tallest, back) -->
+  <polygon points="105,18 175,148 35,148" fill="#D4CEBC"/>
+  <!-- Green left mountain -->
+  <polygon points="55,52 125,148 0,148" fill="#7A9472"/>
+  <!-- Gold right foreground wedge -->
+  <polygon points="200,148 105,148 148,88" fill="#C4972C"/>
+</svg>
