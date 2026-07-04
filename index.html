@@ -349,17 +349,14 @@ button{background:none;border:none;cursor:pointer;font:inherit;}
 }
 /* 左欄：文字 */
 .po-info{
-  padding:2.5rem 2rem 5rem;
+  padding:2.5rem 2rem 2.5rem;
   border-right:1px solid #e8e8e8;
   height:100%;
   overflow-y:auto;
   position:relative;
 }
 .po-info-footer{
-  position:absolute;
-  bottom:1.5rem;
-  left:2rem;
-  right:2rem;
+  margin-top:2rem;
   padding-top:1rem;
   border-top:1px solid #e8e8e8;
   display:flex;
@@ -371,7 +368,7 @@ button{background:none;border:none;cursor:pointer;font:inherit;}
 .po-info-footer-en{font-size:.43rem;font-family:'Playfair Display',serif;font-weight:900;letter-spacing:.02em;color:#000;background:rgba(212,168,64,0.8);padding:.05em .3em;display:inline-block;}
 .po-title{font-family:'Microsoft JhengHei','微軟正黑體',sans-serif;font-size:1.4rem;font-weight:400;font-style:normal;color:#111;margin-bottom:.4rem;line-height:1.3;white-space:normal;word-break:break-word;}
 .po-sub{font-size:.65rem;letter-spacing:.1em;color:#aaa;margin-bottom:1.8rem;padding-bottom:1rem;border-bottom:1px solid #f0f0f0;}
-.po-desc{font-size:.76rem;line-height:2.3;color:#555;}
+.po-desc{font-size:.76rem;line-height:2.3;color:#555;white-space:pre-wrap;}
 /* 右欄：照片瀏覽器 */
 .po-gallery{
   display:flex;
@@ -914,7 +911,7 @@ const PROJECTS = {
   '住宅': [
     { name:'彰化市延平段－莊宅', sub:'Houses ／ 2022 ／ 彰化市', imgs:['projects/portfolio/houses/01.2022彰化市延平段－莊宅-彰化市/01.jpg','projects/portfolio/houses/01.2022彰化市延平段－莊宅-彰化市/02.jpg','projects/portfolio/houses/01.2022彰化市延平段－莊宅-彰化市/03.jpg','projects/portfolio/houses/01.2022彰化市延平段－莊宅-彰化市/04.jpg'], captions:['建築物外觀模擬','中庭挑空（側面採光）','一樓車庫','實際施工照片'], desc:'基地位於彰化市延平段，…' },
     { name:'伸港鄉－梅宅', sub:'Houses ／ 2022 ／ 彰化縣伸港鄉', imgs:['projects/portfolio/houses/02.2022伸港鄉－梅宅-彰化縣伸港鄉/01.jpg','projects/portfolio/houses/02.2022伸港鄉－梅宅-彰化縣伸港鄉/02.jpg','projects/portfolio/houses/02.2022伸港鄉－梅宅-彰化縣伸港鄉/03.jpg','projects/portfolio/houses/02.2022伸港鄉－梅宅-彰化縣伸港鄉/04.jpg','projects/portfolio/houses/02.2022伸港鄉－梅宅-彰化縣伸港鄉/05.jpg','projects/portfolio/houses/02.2022伸港鄉－梅宅-彰化縣伸港鄉/06.jpg'], desc:'以「靜」為設計核心，透過窄長天井引入光線，每個角落都是一幅靜物畫。' },
-    { name:'003之宅', sub:'Houses ／ 2019 ／ 彰化', img:'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1400&q=85', desc:'建於彰化縣農業地景中的透天住宅，以鏽鐵板、木格柵與白粉牆構成素樸的生活空間。' },
+    { name:'二林鎮萬興段－林宅', sub:'Houses ／ 2023 ／ 彰化縣二林鄉', imgs:['projects/portfolio/houses/03.2023二林鎮萬興段－林宅-彰化縣二林鄉/01.jpg','projects/portfolio/houses/03.2023二林鎮萬興段－林宅-彰化縣二林鄉/02.jpg','projects/portfolio/houses/03.2023二林鎮萬興段－林宅-彰化縣二林鄉/03.jpg','projects/portfolio/houses/03.2023二林鎮萬興段－林宅-彰化縣二林鄉/04.jpg','projects/portfolio/houses/03.2023二林鎮萬興段－林宅-彰化縣二林鄉/05.jpg','projects/portfolio/houses/03.2023二林鎮萬興段－林宅-彰化縣二林鄉/06.jpg'], desc:'1. 簡約幾何與立體塊面\n建築主體以純白色的方正量體為基底，二樓局部大膽地置入一個灰色質感的框狀塊面。這種「虛實交錯」與「量體錯落」的幾何手法，打破了傳統鄉間透天屋常見的單調立面，讓建築在藍天綠地之間顯得既現代又具雕塑感。\n\n2. 灰白對比與材質內斂\n純白外牆：在大片藍天與自然景觀烘托下，白色能反射陽光，帶給人清爽、明亮的視覺感受。\n灰色面材：在二樓主視覺面與一樓露台局部帶有紋理的灰色材質，不僅創造出沈穩的視覺焦點，也耐髒、耐看，完美調和了純白建築的輕盈感。\n\n3. 光影留白與半戶外「埕」的延伸\n入口過渡空間：一樓入口採取內凹式的玄關設計（類似傳統建築「亭仔腳」或埕的現代轉譯），形成一個兼具遮陽、擋雨的半戶外半私密空間。\n生活感嵌入：座椅的配置與內凹形成的陰影，為家人或鄰里營造出一個可以隨性坐下聊天、歇腳的角落，非常貼合台灣中南部鄉鎮注重人情味與戶外互動的生活習性。\n\n4. 錯落開窗與借景自然\n建築物各個立面的開窗大小與位置經過精心考量：\n一樓設有大面景觀窗，將戶外綠意與樹景引入室內。\n二樓陽台內凹，提供私密性之餘也能遮蔽陽光直射。\n側面則配置了不同尺度的推射窗與長條窗，在滿足室內各功能空間採光與通風需求的同時，也維持了立面的簡潔與隱私。' },
     { name:'004之宅', sub:'Houses ／ 2020 ／ 彰化', img:'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1400&q=85', desc:'位於員林鄉間的獨棟住宅，以雙層立面控制日照與通風，形成自然調節的居住微氣候。' },
     { name:'005之宅', sub:'Houses ／ 2021 ／ 彰化', img:'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=1400&q=85', desc:'全白量體以簡馭繁，透過開口位置與大小的精準控制，讓光成為空間的主要材料。' },
     { name:'006之宅', sub:'Houses ／ 2022 ／ 南投', img:'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=85', desc:'倚山而建，以石材基座銜接地形，木構屋頂向山谷展開，是一次關於棲居與自然的對話。' },
