@@ -318,8 +318,16 @@ button{background:none;border:none;cursor:pointer;font:inherit;}
 .cf-input,.cf-textarea,.cf-select{width:100%;background:transparent;border:none;border-bottom:1px solid #ddd;padding:.4rem 0;font-family:inherit;font-size:.75rem;color:#111;outline:none;resize:none;transition:border-color .25s;appearance:none;-webkit-appearance:none;}
 .cf-input:focus,.cf-textarea:focus,.cf-select:focus{border-bottom-color:#111;}
 .cf-textarea{min-height:85px;}
-.cf-submit{font-size:.63rem;letter-spacing:.2em;color:#fff;background:var(--gold);border:1px solid var(--gold);padding:.65rem 2rem;transition:background .25s,color .25s;margin-top:.5rem;}
+.cf-submit{font-size:.63rem;letter-spacing:.2em;color:#fff;background:var(--gold);border:1px solid var(--gold);padding:.65rem 2rem;transition:background .25s,color .25s;margin-top:.5rem;cursor:pointer;}
 .cf-submit:hover{background:#fff;color:var(--gold);}
+.cf-submit:disabled{opacity:.55;cursor:not-allowed;}
+.cf-submit:disabled:hover{background:var(--gold);color:#fff;}
+.cf-section{font-size:.62rem;letter-spacing:.16em;color:#a9a49b;text-transform:uppercase;margin:1.9rem 0 1.1rem;padding-top:1.3rem;border-top:1px dashed #e5e1d8;}
+.cf-section:first-of-type{margin-top:0;padding-top:0;border-top:none;}
+.cf-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.3rem;}
+.cf-row-2 .cf-row{margin-bottom:0;}
+@media(max-width:480px){.cf-row-2{grid-template-columns:1fr;gap:1.1rem;}}
+.cf-success{display:none;color:#5c7a52;font-size:.72rem;margin-bottom:.8rem;}
 
 /* ══ PROJECT OVERLAY ═══════════════════════ */
 #po{
@@ -822,10 +830,13 @@ footer{
       </div>
       <div>
         <form id="contact-form">
+          <div class="cf-section">CONTACT INFO　聯絡資訊</div>
           <div class="cf-row"><label class="cf-label">NAME　姓名</label><input id="cf-name" class="cf-input" type="text" placeholder="您的姓名" /></div>
           <div class="cf-row"><label class="cf-label">EMAIL　信箱</label><input id="cf-email" class="cf-input" type="email" placeholder="your@email.com" /></div>
           <div class="cf-row"><label class="cf-label">TEL　電話</label><input id="cf-tel" class="cf-input" type="tel" placeholder="0900-000-000" /></div>
           <div class="cf-row"><label class="cf-label">LINE　帳號</label><input id="cf-line" class="cf-input" type="text" placeholder="LINE ID" /></div>
+
+          <div class="cf-section">PROJECT INFO　案件資訊</div>
           <div class="cf-row">
             <label class="cf-label">PROJECT TYPE　專案類型</label>
             <select id="cf-type" class="cf-select">
@@ -834,9 +845,55 @@ footer{
               <option>公共建築</option><option>室內設計</option><option>其他</option>
             </select>
           </div>
-          <div class="cf-row"><label class="cf-label">MESSAGE　說明</label><textarea id="cf-msg" class="cf-textarea" placeholder="請簡述您的需求…"></textarea></div>
+          <div class="cf-row-2">
+            <div class="cf-row"><label class="cf-label">LAND NO.　土地地號</label><input id="cf-land" class="cf-input" type="text" placeholder="例：彰化市OO段123地號" /></div>
+            <div class="cf-row"><label class="cf-label">BUILDING NO.　建號</label><input id="cf-building" class="cf-input" type="text" placeholder="若無建物可留空" /></div>
+          </div>
+          <div class="cf-row-2">
+            <div class="cf-row">
+              <label class="cf-label">SITE STATUS　地上物現況</label>
+              <select id="cf-has-building" class="cf-select">
+                <option value="" disabled selected>請選擇</option>
+                <option>空地／無建築物</option><option>有既有建築物</option><option>不確定</option>
+              </select>
+            </div>
+            <div class="cf-row">
+              <label class="cf-label">LEGAL STATUS　合法建築</label>
+              <select id="cf-legal" class="cf-select">
+                <option value="" disabled selected>請選擇</option>
+                <option>是</option><option>否</option><option>不確定</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cf-section">PREFERRED SCHEDULE　洽談時段</div>
+          <div class="cf-row-2">
+            <div class="cf-row"><label class="cf-label">1ST CHOICE　優先日期</label><input id="cf-date1" class="cf-input" type="date" /></div>
+            <div class="cf-row">
+              <label class="cf-label">TIME　時段</label>
+              <select id="cf-time1" class="cf-select">
+                <option value="" disabled selected>請選擇時段</option>
+                <option>09:00–10:30</option><option>10:30–12:00</option>
+                <option>13:30–15:00</option><option>15:00–16:30</option><option>16:30–18:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="cf-row-2">
+            <div class="cf-row"><label class="cf-label">2ND CHOICE　次要日期</label><input id="cf-date2" class="cf-input" type="date" /></div>
+            <div class="cf-row">
+              <label class="cf-label">TIME　時段</label>
+              <select id="cf-time2" class="cf-select">
+                <option value="" disabled selected>請選擇時段</option>
+                <option>09:00–10:30</option><option>10:30–12:00</option>
+                <option>13:30–15:00</option><option>15:00–16:30</option><option>16:30–18:00</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cf-row"><label class="cf-label">MESSAGE　規劃概述／需求說明</label><textarea id="cf-msg" class="cf-textarea" placeholder="請簡述您的需求…"></textarea></div>
           <div id="cf-error" style="display:none;color:#c0392b;font-size:.72rem;margin-bottom:.8rem;">請至少填寫「電話」或「Email 信箱」其中一項，再送出。</div>
-          <button class="cf-submit" type="submit">SEND MESSAGE　送出</button>
+          <div id="cf-success" class="cf-success">感謝您的來信，我們將盡快與您聯繫。</div>
+          <button class="cf-submit" id="cf-submit" type="submit">SEND MESSAGE　送出</button>
         </form>
       </div>
     </div>
@@ -893,7 +950,25 @@ footer{
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+/* ─── EmailJS 設定（請於 emailjs.com 後台建立後填入） ─────────
+   1. 到 https://www.emailjs.com 用 yclarch@gmail.com 註冊
+   2. Email Services → Add New Service → 選 Gmail 並授權連接 → 複製 Service ID
+   3. Email Templates → Create New Template → 內容可用下方變數，複製 Template ID：
+      {{from_name}} {{from_email}} {{from_tel}} {{from_line}}
+      {{project_type}} {{land_no}} {{building_no}} {{has_building}} {{legal_status}}
+      {{pref_date1}} {{pref_time1}} {{pref_date2}} {{pref_time2}} {{message}}
+      （建議在 Template 的 To Email 設為 yclarch@gmail.com，Reply To 設為 {{from_email}}）
+   4. Account → General → 複製 Public Key
+   5. 把以下三個值換成您實際的 ID／Key，換完後表單就會直接送出 email，不再跳出開信軟體 ────── */
+const EMAILJS_PUBLIC_KEY  = 'm4OpooPaJ7kQ5Rkp0';
+const EMAILJS_SERVICE_ID  = 'service_ees7i1a';
+const EMAILJS_TEMPLATE_ID = 'template_2g7awo8';
+if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+
 /* ─── Data ──────────────────────────────────────── */
 const CATS = [
   { key:'住宅',   label:'私人住宅' },
@@ -1257,31 +1332,69 @@ document.getElementById('btnEn').addEventListener('click', function(){
 /* ─── Contact form ───────────────────────────────── */
 document.getElementById('contact-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const name  = document.getElementById('cf-name').value.trim();
-  const email = document.getElementById('cf-email').value.trim();
-  const tel   = document.getElementById('cf-tel').value.trim();
-  const line  = document.getElementById('cf-line').value.trim();
-  const type  = document.getElementById('cf-type').value;
-  const msg   = document.getElementById('cf-msg').value.trim();
-  const err   = document.getElementById('cf-error');
+  const name    = document.getElementById('cf-name').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const tel     = document.getElementById('cf-tel').value.trim();
+  const line    = document.getElementById('cf-line').value.trim();
+  const type    = document.getElementById('cf-type').value;
+  const land    = document.getElementById('cf-land').value.trim();
+  const building= document.getElementById('cf-building').value.trim();
+  const hasBldg = document.getElementById('cf-has-building').value;
+  const legal   = document.getElementById('cf-legal').value;
+  const date1   = document.getElementById('cf-date1').value;
+  const time1   = document.getElementById('cf-time1').value;
+  const date2   = document.getElementById('cf-date2').value;
+  const time2   = document.getElementById('cf-time2').value;
+  const msg     = document.getElementById('cf-msg').value.trim();
+  const err     = document.getElementById('cf-error');
+  const ok      = document.getElementById('cf-success');
+  const btn     = document.getElementById('cf-submit');
+
+  err.style.display = 'none';
+  ok.style.display  = 'none';
 
   if (!email && !tel) {
+    err.textContent = '請至少填寫「電話」或「Email 信箱」其中一項，再送出。';
     err.style.display = 'block';
     return;
   }
-  err.style.display = 'none';
 
-  const subject = `【網站詢問】${name || '未提供姓名'}`;
-  const body =
-    `姓名：${name || '—'}\n` +
-    `電話：${tel  || '—'}\n` +
-    `Email：${email || '—'}\n` +
-    `LINE：${line || '—'}\n` +
-    `專案類型：${type || '—'}\n\n` +
-    `說明：\n${msg || '—'}`;
+  const templateParams = {
+    from_name: name || '未提供', from_email: email || '—', from_tel: tel || '—', from_line: line || '—',
+    project_type: type || '—', land_no: land || '—', building_no: building || '—',
+    has_building: hasBldg || '—', legal_status: legal || '—',
+    pref_date1: date1 || '—', pref_time1: time1 || '—',
+    pref_date2: date2 || '—', pref_time2: time2 || '—',
+    message: msg || '—'
+  };
 
-  window.location.href =
-    `mailto:yclarch@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const emailjsReady = typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY';
+
+  if (!emailjsReady) {
+    // EmailJS 尚未設定金鑰，暫時 fallback 用開信軟體送出
+    const subject = `【網站詢問】${name || '未提供姓名'}`;
+    const body = Object.entries(templateParams).map(([k, v]) => `${k}：${v}`).join('\n');
+    window.location.href = `mailto:yclarch@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '資料傳輸中，請稍候…';
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+    .then(function() {
+      ok.style.display = 'block';
+      document.getElementById('contact-form').reset();
+    })
+    .catch(function(error) {
+      err.textContent = '送出失敗，請稍後再試，或直接來電／email 與我們聯繫。';
+      err.style.display = 'block';
+      console.error('EmailJS error:', error);
+    })
+    .finally(function() {
+      btn.disabled = false;
+      btn.textContent = 'SEND MESSAGE　送出';
+    });
 });
 
 /* ─── Slideshow ──────────────────────────────────── */
